@@ -186,6 +186,31 @@ public class MapGameStatsCalculatorTest {
   }
 
   // highestScorer tests
+  @Test 
+  public void highestScorerWorksWhenAllScoresNegative() {
+    // Arrange
+    String scoreData = "Leo -10\n" + "Ana -3\n" + "Mia -7\n";
+     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+     // Act
+    String actual = calculator.highestScorer();
+
+    // Assert
+    assertEquals("Ana", actual);
+  }
+
+  @Test 
+  public void highestScorerWorksWithOnlyOnePerson() {
+    // Arrange
+    String scoreData = "Mia 5\n" + "Mia 15\n";
+     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+     // Act
+    String actual = calculator.highestScorer();
+
+    // Assert
+    assertEquals("Mia", actual);
+  }
 
   @Test
   public void highestScorerReturnsPersonWithHighestScore() {
