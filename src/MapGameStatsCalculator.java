@@ -18,11 +18,12 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    *  "Xinting": 1
    * }
    */
+
+  // For some waves you will need to add more private instance variables here!
   private Map<String, Integer> gameCounts;
   private Map<String, Integer> highScores;
   private Map<String, Integer> allScores;
-  // For some waves you will need to add more private instance variables here!
-
+  private Map<String, Integer> sortScores;
 
 
   public MapGameStatsCalculator(Scanner scoreInput) {
@@ -35,6 +36,7 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
       int score = scoreInput.nextInt();
 
       // TODO: add logic here to use the name and score to fill your map(s)!
+
       if(!gameCounts.containsKey(name)) {
         gameCounts.put(name, 1);
       } else {
