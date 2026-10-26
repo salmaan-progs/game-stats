@@ -99,6 +99,31 @@ public class MapGameStatsCalculatorTest {
 
 
   // highScore tests
+  @Test 
+  public void highScoreReturnsHighestWhenAllScoresNegative() {
+    // Arrange
+    String scoreData = "Leo -10\n" + "Leo -3\n" + "Leo -7\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // Act 
+    int actual = calculator.highScore("Leo");
+
+    // Assert
+    assertEquals(-3, actual);
+  }
+
+  @Test 
+  public void highScoreFindsHighestInLastGame() {
+    // Arranges
+    String scoreData = "Mia 5\n" + "Mia 12\n" + "Mia 40\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // Act 
+    int actual = calculator.highScore("Mia");
+
+    // Assert
+    assertEquals(40, actual);
+  }
 
   @Test
   public void highScoreReturnsHighestScoreForPerson() {
