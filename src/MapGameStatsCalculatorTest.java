@@ -307,6 +307,33 @@ public class MapGameStatsCalculatorTest {
     assertThrows(NoSuchElementException.class, act);
   }
 
+  @Test 
+  public void getAverageScoreWorksWithNegativeScores() {
+     // Arrange
+    String scoreData = "Leo -4\n" + "Leo 10\n" + "Leo -3\n";
+     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+     // Act
+    double actual = calculator.getAverageScore("Leo");
+
+    // Assert
+    assertEquals(1.0, actual, 0.001);
+  }
+
+  @Test 
+  public void getAverageScoreReturnsDecimalAverage() {
+     // Arrange
+    String scoreData = "Mia 10\n" + "Mia 15\n";
+     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+     // Act
+    double actual = calculator.getAverageScore("Mia");
+
+    // Assert
+    assertEquals(12.5, actual, 0.001);
+  }
+
+
   // highestAverageScorer tests
 
   @Test
@@ -341,6 +368,33 @@ public class MapGameStatsCalculatorTest {
     // Assert
     assertThrows(NoSuchElementException.class, act);
   }
+
+  @Test 
+  public void highestAverageScorerIsNotJustHighestSingleScore() {
+     // Arrange
+    String scoreData = "Ana 100\n" + "Ana  0\n" + "Leo 60\n" + "Leo 60\n";
+     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+     // Act
+    String actual = calculator.highestAverageScorer();
+
+    // Assert
+    assertEquals("Leo", actual);
+  }
+
+  @Test 
+  public void highestAverageScorerWorksWhenAllScoresNegative() {
+     // Arrange
+    String scoreData = "Ana -10\n" + "Ana  -20\n" + "Leo -1\n" + "Leo -3\n";
+     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+     // Act
+    String actual = calculator.highestAverageScorer();
+
+    // Assert
+    assertEquals("Leo", actual);
+  }
+
 
   // sortedScores tests
 

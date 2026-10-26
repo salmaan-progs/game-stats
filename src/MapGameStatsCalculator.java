@@ -136,12 +136,10 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
   @Override
   public String highestAverageScorer() {
     String highestAvgScorer = null;
-    int highestAvgInt = 0;
-
+    
     for(String name : highScores.keySet()) {
-      if(highestAvgScorer == null || highScores.get(name) > highScores.get(highestAvgScorer)) {
+      if(highestAvgScorer == null || getAverageScore(name) > getAverageScore(highestAvgScorer)) {
         highestAvgScorer = name;
-        highestAvgInt = highScores.get(name);
       }
     }
     checkScoreData();
